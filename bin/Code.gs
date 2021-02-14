@@ -119,67 +119,6 @@ function authTest() {
 
 /**
  * This method returns a portion of messages/events from the specified channel. To read the entire history for a channel, call the method with no latest or oldest arguments, and then continue paging using the instructions below.
- * https://api.slack.com/methods/channels.history
- * @param {string} channelId Channel to fetch history for.
- * @param {Object} optParams optional
-  * <table class="arguments table table-condensed">
- *         <tbody>
- *         <tr>
- *             <td><b>Name</b></td>
- *             <td><b>Type</b></td>
- *             <td><b>Description</b></td>
- *         </tr>
- *         <tr>
- *             <td style="white-space:nowrap"><code>latest</code></td>
- *             <td style="white-space:nowrap"><code>String</code></td>
- *             <td><p>Timestamp of the oldest recent seen message. like <code>1234567890.123456</code></p></td>
- *         </tr>
- *         <tr>
- *             <td style="white-space:nowrap"><code>oldest</code></td>
- *             <td style="white-space:nowrap"><code>String</code></td>
- *             <td><p>Timestamp of the latest previously seen message. like <code>1234567890.123456</code></p></td>
- *         </tr>
- *         <tr>
- *             <td style="white-space:nowrap"><code>count</code></td>
- *             <td style="white-space:nowrap"><code>Number</code></td>
- *             <td><p>Number of messages to return, between 1 and 1000. like <code>100</code></p></td>
- *         </tr>
- *         </tbody></table>
- * @return {Object} api result
- *  <pre><code>
- *  {
- *     "ok": true,
- *     "latest": "1358547726.000003",
- *     "messages": [
- *         {
- *             "type": "message",
- *             "ts": "1358546515.000008",
- *             "user": "U2147483896",
- *             "text": "Hello"
- *         },
- *         {
- *             "type": "message",
- *             "ts": "1358546515.000007",
- *             "user": "U2147483896",
- *             "text": "World",
- *             "is_starred": true,
- *         },
- *         {
- *             "type": "something_else",
- *             "ts": "1358546515.000007",
- *             "wibblr": true
- *         }
- *     ],
- *     "has_more": false
- * }
- * </code></pre>
- */
-function channelsHistory(channelId, optParams) {
-    throw new Error("this method should not call direct, please call create method.")
-}
-
-/**
- * This method returns a portion of messages/events from the specified channel. To read the entire history for a channel, call the method with no latest or oldest arguments, and then continue paging using the instructions below.
  * https://api.slack.com/methods/conversations.history
  * @param {string} channelId Channel to fetch history for.
  * @param {Object} optParams optional
@@ -515,16 +454,6 @@ function groupsCreateChild(channelId) {
 }
 
 /**
- * This method returns a portion of messages/events from the specified private group. To read the entire history for a group, call the method with no latest or oldest arguments, and then continue paging using the instructions below.
- * @param {string} channelId Group to fetch history for.
- * @param {Object} option optional
- * @return {Object} api result
- */
-function groupsHistory(channelId, option) {
-    throw new Error("this method should not call direct, please call create method.")
-}
-
-/**
  * This method is used to invite a user to a private group. The calling user must be a member of the group.
  *
  * To invite a new member to a group without giving them access to the archives of the group call the groups.createChild method before inviting.
@@ -795,8 +724,6 @@ var _this = this,
 
       _this.groupsInvite = __bind(_this.groupsInvite, this);
 
-      _this.groupsHistory = __bind(_this.groupsHistory, this);
-
       _this.groupsCreateChild = __bind(_this.groupsCreateChild, this);
 
       _this.groupsCreate = __bind(_this.groupsCreate, this);
@@ -833,8 +760,6 @@ var _this = this,
 
       _this.channelsInvite = __bind(_this.channelsInvite, this);
 
-      _this.channelsHistory = __bind(_this.channelsHistory, this);
-
       _this.conversationsHistory = __bind(_this.conversationsHistory, this);
 
       _this.authTest = __bind(_this.authTest, this);
@@ -860,13 +785,6 @@ var _this = this,
 
     SlackApp.prototype.authTest = function() {
       return this.fetch_("auth.test");
-    };
-
-    SlackApp.prototype.channelsHistory = function(channelId, optParams) {
-      if (optParams == null) optParams = {};
-      return this.fetch_("channels.history", _.extend({
-        channel: channelId
-      }, optParams));
     };
 
     SlackApp.prototype.conversationsHistory = function(channelId, optParams) {
@@ -995,13 +913,6 @@ var _this = this,
       return this.fetch_("groups.createChild", {
         channel: channelId
       });
-    };
-
-    SlackApp.prototype.groupsHistory = function(channelId, option) {
-      if (option == null) option = {};
-      return this.fetch_("groups.history", _.extend({
-        channel: channelId
-      }, option));
     };
 
     SlackApp.prototype.groupsInvite = function(channelId, userId) {
