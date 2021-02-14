@@ -179,6 +179,16 @@ function channelsHistory(channelId, optParams) {
 }
 
 /**
+ * This method returns a portion of messages/events from the specified channel. To read the entire history for a channel, call the method with no latest or oldest arguments, and then continue paging using the instructions below.
+ * https://api.slack.com/methods/conversations.history
+ * @param {string} channelId Channel to fetch history for.
+ * @param {Object} optParams optional
+ */
+function conversationsHistory(channelId, optParams) {
+    throw new Error("this method should not call direct, please call create method.")
+}
+
+/**
  * This method returns information about a team channel.
  * @param {string} channelId Channel to get info on
  * @return {Object} api result
@@ -825,6 +835,8 @@ var _this = this,
 
       _this.channelsHistory = __bind(_this.channelsHistory, this);
 
+      _this.conversationsHistory = __bind(_this.conversationsHistory, this);
+
       _this.authTest = __bind(_this.authTest, this);
 
       _this.apiTest = __bind(_this.apiTest, this);
@@ -853,6 +865,13 @@ var _this = this,
     SlackApp.prototype.channelsHistory = function(channelId, optParams) {
       if (optParams == null) optParams = {};
       return this.fetch_("channels.history", _.extend({
+        channel: channelId
+      }, optParams));
+    };
+
+    SlackApp.prototype.conversationsHistory = function(channelId, optParams) {
+      if (optParams == null) optParams = {};
+      return this.fetch_("conversations.history", _.extend({
         channel: channelId
       }, optParams));
     };
