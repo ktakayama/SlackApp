@@ -6,19 +6,19 @@ Slack API Library for Google Apps Script
 ## Library Key
 
 ```
-M3W5Ut3Q39AaIwLquryEPMwV62A3znfOO
+1tM_4z6e2IVTJE4xGxsACJUg64Yzdigyz-BwSlgopbqdlfZj810-yxbbC
 ```
 
 ## API Document
 
-https://script.google.com/macros/library/versions/d/M3W5Ut3Q39AaIwLquryEPMwV62A3znfOO
+https://script.google.com/macros/library/versions/d/1tM_4z6e2IVTJE4xGxsACJUg64Yzdigyz-BwSlgopbqdlfZj810-yxbbC
 
 ## How to use.
 
 ### Use Slack API Token.
 
 1. Import `SlackApp` library to your project. See [Documents](https://developers.google.com/apps-script/guide_libraries?hl=ja)
-  * Library Key `M3W5Ut3Q39AaIwLquryEPMwV62A3znfOO`
+  * Library Key `1tM_4z6e2IVTJE4xGxsACJUg64Yzdigyz-BwSlgopbqdlfZj810-yxbbC`
 2. Get a Slack API token from [Slack](https://api.slack.com/).
 3. Write a code!
 ```javascript
