@@ -831,7 +831,6 @@ var _this = this,
       if (optIsExecludeArchived == null) optIsExecludeArchived = false;
       execludeArchived = optIsExecludeArchived ? 1 : 0;
       return this.fetch_("channels.list", {
-        channel: channelId,
         exclude_archived: execludeArchived
       });
     };
