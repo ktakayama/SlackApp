@@ -432,7 +432,7 @@ function filesUpload(fileBlob, option) {
  * @param {string} name Name of group to create
  * @return {Object} api result
  */
-function groupsCreate(name) {
+function conversationsCreate(name) {
     throw new Error("this method should not call direct, please call create method.")
 }
 
@@ -449,95 +449,7 @@ function groupsCreate(name) {
  * @param {string} channelId Group to clone and archive.
  * @return {Object} api result
  */
-function groupsCreateChild(channelId) {
-    throw new Error("this method should not call direct, please call create method.")
-}
-
-/**
- * This method is used to invite a user to a private group. The calling user must be a member of the group.
- *
- * To invite a new member to a group without giving them access to the archives of the group call the groups.createChild method before inviting.
- * @param {string} channelId Private group to invite user to.
- * @param {string} userId User to invite.
- * @return {Object} api result
- */
-function groupsInvite(channelId, userId) {
-    throw new Error("this method should not call direct, please call create method.")
-}
-
-/**
- * This method allows a user to remove another member from a private group.
- * @param {string} channelId Group to remove user from.
- * @param {string} userId User to remove from group.
- * @return {Object} api result
- */
-function groupsKick(channelId, userId) {
-    throw new Error("this method should not call direct, please call create method.")
-}
-
-/**
- * This method is used to leave a private group.
- * @param {string} channelId Group to leave
- * @return {Object} api result
- */
-function groupsLeave(channelId) {
-    throw new Error("this method should not call direct, please call create method.")
-}
-
-/**
- * This method returns a list of groups in the team that the caller is in and archived groups that the caller was in. The list of (non-deactivated) members in each group is also returned.
- * @param {Boolean} optIsExecludeArchived optional true/false Don't return archived groups.
- * @return {Object} api result
- */
-function groupsList(optIsExecludeArchived) {
-    throw new Error("this method should not call direct, please call create method.")
-}
-
-/**
- * This method moves the read cursor in a private group.
- * @param {string} channelId Group to set reading cursor in.
- * @param {Number} timestamp Timestamp of the most recently seen message.
- * @return {Object} api result
- */
-function groupsMark(channelId, timestamp) {
-    throw new Error("this method should not call direct, please call create method.")
-}
-
-/**
- * This method is used to change the purpose of a private group. The calling user must be a member of the private group.
- * @param {string} channelId Private group to set the purpose of
- * @param {string} purpose The new purpose
- * @return {Object} api result
- */
-function groupsSetPurpose(channelId, purpose) {
-    throw new Error("this method should not call direct, please call create method.")
-}
-
-/**
- * This method is used to change the topic of a private group. The calling user must be a member of the private group.
- * @param {string} channelId Private group to set the topic of
- * @param {string} topic The new topic
- * @return {Object} api result
- */
-function groupsSetTopic(channelId, topic) {
-    throw new Error("this method should not call direct, please call create method.")
-}
-
-/**
- * This method returns a list of all im channels that the user has.
- * @return {Object} api result
- */
-function imList() {
-    throw new Error("this method should not call direct, please call create method.")
-}
-
-/**
- * This method moves the read cursor in a direct message channel.
- * @param {string} channelId Direct message channel to set reading cursor in.
- * @param {Number} timestamp Timestamp of the most recently seen message.
- * @return {Object} api result
- */
-function imMark(channelId, timestamp) {
+function conversationsCreateChild(channelId) {
     throw new Error("this method should not call direct, please call create method.")
 }
 
@@ -694,27 +606,9 @@ var _this = this,
 
       _this.presenceSetAway = __bind(_this.presenceSetAway, this);
 
-      _this.imMark = __bind(_this.imMark, this);
+      _this.conversationsCreateChild = __bind(_this.conversationsCreateChild, this);
 
-      _this.imList = __bind(_this.imList, this);
-
-      _this.groupsSetTopic = __bind(_this.groupsSetTopic, this);
-
-      _this.groupsSetPurpose = __bind(_this.groupsSetPurpose, this);
-
-      _this.groupsMark = __bind(_this.groupsMark, this);
-
-      _this.groupsList = __bind(_this.groupsList, this);
-
-      _this.groupsLeave = __bind(_this.groupsLeave, this);
-
-      _this.groupsKick = __bind(_this.groupsKick, this);
-
-      _this.groupsInvite = __bind(_this.groupsInvite, this);
-
-      _this.groupsCreateChild = __bind(_this.groupsCreateChild, this);
-
-      _this.groupsCreate = __bind(_this.groupsCreate, this);
+      _this.conversationsCreate = __bind(_this.conversationsCreate, this);
 
       _this.filesUpload = __bind(_this.filesUpload, this);
 
@@ -890,76 +784,15 @@ var _this = this,
       }, option));
     };
 
-    SlackApp.prototype.groupsCreate = function(name) {
-      return this.fetch_("groups.create", {
+    SlackApp.prototype.conversationsCreate = function(name) {
+      return this.fetch_("conversations.create", {
         name: name
       });
     };
 
-    SlackApp.prototype.groupsCreateChild = function(channelId) {
-      return this.fetch_("groups.createChild", {
+    SlackApp.prototype.conversationsCreateChild = function(channelId) {
+      return this.fetch_("conversations.createChild", {
         channel: channelId
-      });
-    };
-
-    SlackApp.prototype.groupsInvite = function(channelId, userId) {
-      return this.fetch_("groups.invite", {
-        channel: channelId,
-        user: userId
-      });
-    };
-
-    SlackApp.prototype.groupsKick = function(channelId, userId) {
-      return this.fetch_("groups.kick", {
-        channel: channelId,
-        user: userId
-      });
-    };
-
-    SlackApp.prototype.groupsLeave = function(channelId) {
-      return this.fetch_("groups.leave", {
-        channel: channelId
-      });
-    };
-
-    SlackApp.prototype.groupsList = function(optIsExecludeArchived) {
-      var execludeArchived;
-      if (optIsExecludeArchived == null) optIsExecludeArchived = false;
-      execludeArchived = optIsExecludeArchived ? 1 : 0;
-      return this.fetch_("groups.list", {
-        exclude_archived: execludeArchived
-      });
-    };
-
-    SlackApp.prototype.groupsMark = function(channelId, timestamp) {
-      return this.fetch_("groups.mark", {
-        channel: channelId,
-        ts: timestamp
-      });
-    };
-
-    SlackApp.prototype.groupsSetPurpose = function(channelId, purpose) {
-      return this.fetch_("groups.setPurpose", {
-        channel: channelId,
-        purpose: purpose
-      });
-    };
-
-    SlackApp.prototype.groupsSetTopic = function(channelId, topic) {
-      return this.fetch_("groups.setTopic", {
-        channel: channelId,
-        topic: topic
-      });
-    };
-
-    SlackApp.prototype.imList = function() {
-      return this.fetch_("im.list");
-    };
-
-    SlackApp.prototype.imMark = function(channelId, timestamp) {
-      return this.fetch_("im.mark", {
-        channel: channelId,
-        ts: timestamp
       });
     };
 
