@@ -524,16 +524,6 @@ function groupsSetTopic(channelId, topic) {
 }
 
 /**
- * This method returns a portion of messages/events from the specified direct message channel. To read the entire history for a direct message channel, call the method with no latest or oldest arguments, and then continue paging using the instructions below.
- * @param {string} channelId Direct message channel to fetch history for.
- * @param {Object} option optional
- * @return {Object} api result
- */
-function imHistory(channelId, option) {
-    throw new Error("this method should not call direct, please call create method.")
-}
-
-/**
  * This method returns a list of all im channels that the user has.
  * @return {Object} api result
  */
@@ -707,8 +697,6 @@ var _this = this,
       _this.imMark = __bind(_this.imMark, this);
 
       _this.imList = __bind(_this.imList, this);
-
-      _this.imHistory = __bind(_this.imHistory, this);
 
       _this.groupsSetTopic = __bind(_this.groupsSetTopic, this);
 
@@ -962,13 +950,6 @@ var _this = this,
         channel: channelId,
         topic: topic
       });
-    };
-
-    SlackApp.prototype.imHistory = function(channelId, option) {
-      if (option == null) option = {};
-      return this.fetch_("im.history", _.extend({
-        channel: channelId
-      }, option));
     };
 
     SlackApp.prototype.imList = function() {
