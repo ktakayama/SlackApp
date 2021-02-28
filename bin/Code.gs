@@ -157,7 +157,7 @@ function conversationsHistory(channelId, optParams) {
  * }
  * </code></pre>
  */
-function channelsInfo(channelId) {
+function conversationsInfo(channelId) {
     throw new Error("this method should not call direct, please call create method.")
 }
 
@@ -195,7 +195,7 @@ function channelsInfo(channelId) {
  * }
  * </code></pre>
  */
-function channelsInvite(channelId, userId) {
+function conversationsInvite(channelId, userId) {
     throw new Error("this method should not call direct, please call create method.")
 }
 
@@ -247,7 +247,7 @@ function channelsInvite(channelId, userId) {
  * }
  *  </code></pre>
  */
-function channelsJoin(channelName) {
+function conversationsJoin(channelId) {
     throw new Error("this method should not call direct, please call create method.")
 }
 
@@ -262,7 +262,7 @@ function channelsJoin(channelName) {
  * }
  * </code></pre>
  */
-function channelsKick(channelId, userId) {
+function conversationsKick(channelId, userId) {
     throw new Error("this method should not call direct, please call create method.")
 }
 
@@ -283,7 +283,7 @@ function channelsKick(channelId, userId) {
  * }
  * </code></pre>
  */
-function channelsLeave(channelId) {
+function conversationsLeave(channelId) {
     throw new Error("this method should not call direct, please call create method.")
 }
 
@@ -319,7 +319,7 @@ function channelsLeave(channelId) {
  * }
  * </code></pre>
  */
-function channelsList(optIsExecludeArchived) {
+function conversationsList(optIsExecludeArchived) {
     throw new Error("this method should not call direct, please call create method.")
 }
 
@@ -334,7 +334,7 @@ function channelsList(optIsExecludeArchived) {
  * } 
  * </code></pre>
  */
-function channelsMark(channelId, timestamp) {
+function conversationsMark(channelId, timestamp) {
     throw new Error("this method should not call direct, please call create method.")
 }
 
@@ -344,7 +344,7 @@ function channelsMark(channelId, timestamp) {
  * @param {string} purpose The new purpose
  * @return {Object} api result
  */
-function channelsSetPurpose(channelId, purpose) {
+function conversationsSetPurpose(channelId, purpose) {
     throw new Error("this method should not call direct, please call create method.")
 }
 
@@ -354,7 +354,7 @@ function channelsSetPurpose(channelId, purpose) {
  * @param {string} topic The new topic
  * @return {Object} api result
  */
-function channelsSetTopic(channelId, topic) {
+function conversationsSetTopic(channelId, topic) {
     throw new Error("this method should not call direct, please call create method.")
 }
 
@@ -730,23 +730,23 @@ var _this = this,
 
       _this.chatDelete = __bind(_this.chatDelete, this);
 
-      _this.channelsSetTopic = __bind(_this.channelsSetTopic, this);
+      _this.conversationsSetTopic = __bind(_this.conversationsSetTopic, this);
 
-      _this.channelsSetPurpose = __bind(_this.channelsSetPurpose, this);
+      _this.conversationsSetPurpose = __bind(_this.conversationsSetPurpose, this);
 
-      _this.channelsMark = __bind(_this.channelsMark, this);
+      _this.conversationsMark = __bind(_this.conversationsMark, this);
 
-      _this.channelsList = __bind(_this.channelsList, this);
+      _this.conversationsList = __bind(_this.conversationsList, this);
 
-      _this.channelsLeave = __bind(_this.channelsLeave, this);
+      _this.conversationsLeave = __bind(_this.conversationsLeave, this);
 
-      _this.channelsKick = __bind(_this.channelsKick, this);
+      _this.conversationsKick = __bind(_this.conversationsKick, this);
 
-      _this.channelsJoin = __bind(_this.channelsJoin, this);
+      _this.conversationsJoin = __bind(_this.conversationsJoin, this);
 
-      _this.channelsInfo = __bind(_this.channelsInfo, this);
+      _this.conversationsInfo = __bind(_this.conversationsInfo, this);
 
-      _this.channelsInvite = __bind(_this.channelsInvite, this);
+      _this.conversationsInvite = __bind(_this.conversationsInvite, this);
 
       _this.conversationsHistory = __bind(_this.conversationsHistory, this);
 
@@ -782,63 +782,63 @@ var _this = this,
       }, optParams));
     };
 
-    SlackApp.prototype.channelsInvite = function(channelId, userId) {
-      return this.fetch_("channels.invite", {
+    SlackApp.prototype.conversationsInvite = function(channelId, userId) {
+      return this.fetch_("conversations.invite", {
         channel: channelId,
         user: userId
       });
     };
 
-    SlackApp.prototype.channelsInfo = function(channelId) {
-      return this.fetch_("channels.info", {
+    SlackApp.prototype.conversationsInfo = function(channelId) {
+      return this.fetch_("conversations.info", {
         channel: channelId
       });
     };
 
-    SlackApp.prototype.channelsJoin = function(channelName) {
-      return this.fetch_("channels.join", {
-        name: channelName
+    SlackApp.prototype.conversationsJoin = function(channelId) {
+      return this.fetch_("conversations.join", {
+        name: channelId
       });
     };
 
-    SlackApp.prototype.channelsKick = function(channelId, userId) {
-      return this.fetch_("channels.kick", {
+    SlackApp.prototype.conversationsKick = function(channelId, userId) {
+      return this.fetch_("conversations.kick", {
         channel: channelId,
         user: userId
       });
     };
 
-    SlackApp.prototype.channelsLeave = function(channelId) {
-      return this.fetch_("channels.leave", {
+    SlackApp.prototype.conversationsLeave = function(channelId) {
+      return this.fetch_("conversations.leave", {
         channel: channelId
       });
     };
 
-    SlackApp.prototype.channelsList = function(optIsExecludeArchived) {
+    SlackApp.prototype.conversationsList = function(optIsExecludeArchived) {
       var execludeArchived;
       if (optIsExecludeArchived == null) optIsExecludeArchived = false;
       execludeArchived = optIsExecludeArchived ? 1 : 0;
-      return this.fetch_("channels.list", {
+      return this.fetch_("conversations.list", {
         exclude_archived: execludeArchived
       });
     };
 
-    SlackApp.prototype.channelsMark = function(channelId, timestamp) {
-      return this.fetch_("channels.mark", {
+    SlackApp.prototype.conversationsMark = function(channelId, timestamp) {
+      return this.fetch_("conversations.mark", {
         channel: channelId,
         ts: timestamp
       });
     };
 
-    SlackApp.prototype.channelsSetPurpose = function(channelId, purpose) {
-      return this.fetch_("channels.setPurpose", {
+    SlackApp.prototype.conversationsSetPurpose = function(channelId, purpose) {
+      return this.fetch_("conversations.setPurpose", {
         channel: channelId,
         purpose: purpose
       });
     };
 
-    SlackApp.prototype.channelsSetTopic = function(channelId, topic) {
-      return this.fetch_("channels.setTopic", {
+    SlackApp.prototype.conversationsSetTopic = function(channelId, topic) {
+      return this.fetch_("conversations.setTopic", {
         channel: channelId,
         topic: topic
       });
